@@ -4,7 +4,7 @@ const User = require('../../models/User');
 const crypto = require('crypto');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { JWT_SECRET } = require('../config/keys');
+const config = require('config');
 const requireLogin = require('../middleware/requireLogin');
 const nodemailer = require('nodemailer');
 const sendgridTransport = require('sendgrid');
@@ -48,24 +48,12 @@ router.post(
           .status(400)
           .json({ errors: [{ msg: 'Invalid Credentials' }] });
       }
-
-      const payload = {
-        user: {
-          id: user.id,
-        },
-      };
-      const token = jwt.sign({ _id: savedUser._id }, JWT_SECRET);
-          const { _id, name, email, followers, following, pic } = savedUser;
-
-      jwt.sign(
-        payload,
-        config.get('jwtSecret'),
-        { expiresIn: 360000 },
-        (err, token) => {
-          if (err) throw err;
-          res.json({ token });
-        }
-      );
+      const token = jwt.sign({ _id: user.id }, config.get('jwtSecret'));
+      const { _id, name, email, followers, following, pic } = user;
+      res.json({
+        token,
+        user: { _id, name, email, followers, following, pic },
+      });
     } catch (err) {
       console.log(err.message);
       res.status(500).send('Server error');
