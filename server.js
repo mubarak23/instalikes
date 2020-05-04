@@ -25,6 +25,10 @@ app.use(function (req, res, next) {
 
 app.use(express.json());
 
+app.use('/api/user', require('./routes/api/user'));
+app.use('/api/post', require('./routes/api/post'));
+app.use('/api/auth', require('./routes/api/auth'));
+
 if (process.env.NODE_ENV == 'production') {
   app.use(express.static('client/build'));
   const path = require('path');
