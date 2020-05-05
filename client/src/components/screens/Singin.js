@@ -1,19 +1,23 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../../App.css';
 
-const Login = () => {
+const Signin = () => {
   return (
-    <dvi className='my-card'>
+    <dvi className='mycard'>
       <div className='card auth-card'>
         <h3>InterLike</h3>
         <input type='text' placeholder='Eamil' />
         <input type='password' placeholder='Password' />
         <button className='btn waves-effect waves-light #64b5f6 blue darken-1'>
-          Login
+          Signin
         </button>
+        <h5>
+          <Link to='/signup'>Don't Have An Account SignUp</Link>
+        </h5>
       </div>
     </dvi>
   );
 };
 
-export default Login;
+export default Signin;
