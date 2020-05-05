@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { check, validationResult } = require('express-validator/check');
-const User = require('../../models/User');
+const User = require('../../models/user');
 //const auth = require('../../middleware/auth');
 const requireLogin = require('../../middleware/requirelogin');
 const config = require('config');
@@ -153,3 +153,4 @@ router.post('/search-users', (req, res) => {
       console.log(err);
     });
 });
+module.exports = router;

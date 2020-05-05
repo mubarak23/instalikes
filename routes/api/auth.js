@@ -1,14 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../../models/User');
+const User = require('../../models/user');
 const crypto = require('crypto');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { check, validationResult } = require('express-validator/check');
 const config = require('config');
-const requireLogin = require('../middleware/requireLogin');
+//const requireLogin = require('../middleware/requireLogin');
 const nodemailer = require('nodemailer');
 const sendgridTransport = require('sendgrid');
-const { SENDGRID_API, EMAIL } = require('../config/keys');
+const { SENDGRID_API, EMAIL } = require('../../config/keys');
 //
 
 const transporter = nodemailer.createTransport(
