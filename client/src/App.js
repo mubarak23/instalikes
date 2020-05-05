@@ -10,10 +10,18 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
-      <Route path='/' component={Home} />
-      <Route path='/profile' component={Profile} />
-      <Route path='/login' component={Login} />
-      <Route path='/signup' component={Singup} />
+      <Route exact path='/'>
+        <Home />
+      </Route>
+      <Route path='/profile'>
+        <Profile />
+      </Route>
+      <Route path='/login'>
+        <Login />
+      </Route>
+      <Route path='/signup'>
+        <Singup />
+      </Route>
     </BrowserRouter>
   );
 }

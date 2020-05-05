@@ -19,6 +19,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.7",
     "nodemailer": "^6.4.6",
+    "react-router-dom": "^5.1.2",
     "sendgrid": "^5.2.3"
   },
   "devDependencies": {
