@@ -1,8 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../../App.css';
+import { useState } from 'react';
 
 const Signin = () => {
+  const [name, SetName] = useState('');
+  const [password, SetPassword] = useState('');
+  const [email, SetEmail] = useState('');
   return (
     <dvi className='mycard'>
       <div className='card auth-card'>
