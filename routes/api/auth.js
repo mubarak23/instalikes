@@ -23,48 +23,11 @@ const transporter = nodemailer.createTransport(
 // @route    POST api/auth
 // @desc     Authenticate user and get token
 // @access   public
-router.post(
-  '/',
-  [
-    check('username', 'Username is required').not().isEmpty(),
-    check('password', 'Password is required').isLength({ min: 6 }),
-  ],
-  async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(422).json({ error: 'please add all the fields' });
-    }
-    const { email, password } = req.body;
-    try {
-      let user = await User.findOne({ email });
-      if (!user) {
-        return res
-          .status(422)
-          .json({ error: 'user already exists with that email' });
-      }
-
-      const isMatch = await bcrypt.compare(password, user.password);
-      if (!isMatch) {
-        return res
-          .status(400)
-          .json({ errors: [{ msg: 'Invalid Credentials' }] });
-      }
-      const token = jwt.sign({ _id: user.id }, config.get('jwtSecret'));
-      const { _id, name, email, followers, following, pic } = user;
-      res.json({
-        token,
-        user: { _id, name, email, followers, following, pic },
-      });
-    } catch (err) {
-      console.log(err.message);
-      res.status(500).send('Server error');
-    }
-  }
-);
-
 router.post('/signup', (req, res) => {
+  //console.log('No Data Submitted');
   const { name, email, password, pic } = req.body;
   if (!email || !password || !name) {
+    //console.log('No data submitted');
     return res.status(422).json({ error: 'please add all the fields' });
   }
   User.findOne({ email: email })
