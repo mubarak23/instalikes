@@ -33,9 +33,14 @@ h2 {
   width: 30%;
 }
 
-
 .home-card {
   max-width: 550px;
   height: max-content;
   margin: 26px auto;
+}
+
+#toast-container {
+  top: 30px !important;
+  right: 20px !important;
+  left: auto !important;
 }

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import M from 'materialize-css';
 import '../../App.css';
 
 const Signup = () => {
+  const history = useHistory();
   const [name, SetName] = useState('');
   const [password, SetPassword] = useState('');
   const [email, SetEmail] = useState('');
@@ -22,6 +24,12 @@ const Signup = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        if (data.error) {
+          M.toast({ html: data.error, classes: '#c62828 red darken-3' });
+        } else {
+          M.toast({ html: data.message, classes: '#43a047 green darken-1' });
+          history.push('/signin');
+        }
       });
   };
   return (
