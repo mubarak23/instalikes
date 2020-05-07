@@ -4,8 +4,7 @@ const User = require('../../models/user');
 const crypto = require('crypto');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { check, validationResult } = require('express-validator/check');
-const config = require('config');
+const { JWT_SECRET } = require('../../config/keys');
 //const requireLogin = require('../middleware/requireLogin');
 const nodemailer = require('nodemailer');
 const sendgridTransport = require('sendgrid');
@@ -80,7 +79,7 @@ router.post('/signin', (req, res) => {
       .then((doMatch) => {
         if (doMatch) {
           // res.json({message:"successfully signed in"})
-          const token = jwt.sign({ _id: savedUser._id }, JWT_SECRET);
+          const token = jwt.sign({ _id: savedUser._id }, 'GoijfJP6vc2Sc82Yo');
           const { _id, name, email, followers, following, pic } = savedUser;
           res.json({
             token,

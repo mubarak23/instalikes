@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import '../../App.css';
-import { useState } from 'react';
 import M from 'materialize-css';
+import '../../App.css';
 
 const Signin = () => {
   const history = useHistory();
@@ -34,12 +33,12 @@ const Signin = () => {
         if (data.error) {
           M.toast({ html: data.error, classes: '#c62828 red darken-3' });
         } else {
-          M.toast({ html: data.message, classes: '#43a047 green darken-1' });
-          history.push('/home');
+          M.toast({
+            html: 'Signin Sucessfully',
+            classes: '#43a047 green darken-1',
+          });
+          history.push('/');
         }
-      })
-      .catch((err) => {
-        console.log(err);
       });
   };
 
