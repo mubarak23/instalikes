@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-
+import { useHistory } from 'react-router-dom';
+import M from 'materialize-css';
+import '../../App.css';
 const CreatePost = () => {
+  const history = useHistory();
   const [title, SetTitle] = useState('');
   const [body, SetBody] = useState('');
   const [image, setImage] = useState('');
@@ -41,7 +44,7 @@ const CreatePost = () => {
           M.toast({ html: data.error, classes: '#c62828 red darken-3' });
         } else {
           M.toast({ html: data.message, classes: '#43a047 green darken-1' });
-          history.push('/sigin');
+          history.push('/');
         }
       })
       .catch((err) => {
