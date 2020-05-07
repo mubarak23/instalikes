@@ -4,6 +4,7 @@ const CreatePost = () => {
   const [title, SetTitle] = useState('');
   const [body, SetBody] = useState('');
   const [image, setImage] = useState('');
+  const [url, setUrl] = useState('');
   const postDetails = () => {
     const data = new FormData();
     data.append('file', image);
@@ -15,9 +16,35 @@ const CreatePost = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+        setUrl(data.url);
         console.log(data);
       })
       .then((err) => {
+        console.log(err);
+      });
+
+    fetch('/createpost', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        title,
+        body,
+        pic: url,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.error) {
+          M.toast({ html: data.error, classes: '#c62828 red darken-3' });
+        } else {
+          M.toast({ html: data.message, classes: '#43a047 green darken-1' });
+          history.push('/sigin');
+        }
+      })
+      .catch((err) => {
         console.log(err);
       });
   };
