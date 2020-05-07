@@ -34,6 +34,7 @@ router.get('/getsubpost', requireLogin, (req, res) => {
 
 router.post('/createpost', requireLogin, (req, res) => {
   const { title, body, pic } = req.body;
+  console.log(title, body, pic);
   if (!title || !body || !pic) {
     return res.status(422).json({ error: 'Plase add all the fields' });
   }
