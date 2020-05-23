@@ -38,7 +38,8 @@ const Signup = () => {
           M.toast({ html: data.message, classes: '#43a047 green darken-1' });
           history.push('/sigin');
         }
-      }).catch(err => {
+      })
+      .catch((err) => {
         console.log(err);
       });
   };
@@ -71,7 +72,7 @@ const Signup = () => {
           Signup
         </button>
         <h5>
-          <Link to='/sigin'>Have An Already Signin</Link>
+          <Link to='/signin'>Have An Already Signin</Link>
         </h5>
       </div>
     </dvi>

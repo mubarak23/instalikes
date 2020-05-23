@@ -1,4 +1,4 @@
-import React, { useEffect, createContext, useReducer } from 'react';
+import React, { useEffect, createContext, useReducer, useContext } from 'react';
 import Navbar from './components/Navbar';
 import Home from './components/screens/Home';
 import Profile from './components/screens/Profile';
@@ -13,14 +13,16 @@ export const userContext = createContext();
 
 const Routing = () => {
   const history = useHistory();
+  const { state, dispatch } = useContext(userContext);
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
       history.push('/');
+      dispatch({ type: 'USER', payload: user });
     } else {
       history.push('/signin');
     }
-  }, [input]);
+  }, []);
 
   return (
     <Switch>

@@ -10,7 +10,7 @@ const NavBar = () => {
         </Link>
         <ul id='nav-mobile' className='right'>
           <li>
-            <Link to='/sigin'>Signin</Link>
+            <Link to='/signin'>Signin</Link>
           </li>
           <li>
             <Link to='/signup'>Signup</Link>
