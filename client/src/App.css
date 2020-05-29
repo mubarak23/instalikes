@@ -37,6 +37,7 @@ h2 {
   max-width: 550px;
   height: max-content;
   margin: 26px auto;
+  padding: 10px;
 }
 
 #toast-container {

@@ -13,17 +13,14 @@ const NavBar = () => {
         <li>
           <Link to='/createpost'>Create Post</Link>
         </li>,
-        <li>
-          <button
-            onClick={() => {
-              localStorage.clear();
-              dispatch({ type: 'CLEAR' });
-              history.push('/signin');
-            }}
-            className='btn waves-effect waves-light #64b5f6 blue darken-1'
-          >
-            Logout
-          </button>
+        <li
+          onClick={() => {
+            localStorage.clear();
+            dispatch({ type: 'CLEAR' });
+            history.push('/signin');
+          }}
+        >
+          <a href='#'>Logout</a>
         </li>,
       ];
     } else {
