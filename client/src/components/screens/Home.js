@@ -10,10 +10,10 @@ const Home = () => {
     })
       .then((res) => res.json())
       .then((result) => {
-        console.log(result);
+        console.log(data);
         setData(result.posts);
       });
-  });
+  }, []);
   return (
     <div className='home'>
       {data.map((item) => {

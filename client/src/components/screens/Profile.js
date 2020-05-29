@@ -1,6 +1,21 @@
-import React from 'react';
-
+import React, { useEffect, useState, useContext } from 'react';
+import { userContext } from '../../App';
 const Profile = () => {
+  const [mypics, setPics] = useState([]);
+  const { state, dispatch } = useContext(userContext);
+  console.log(state);
+  useEffect(() => {
+    fetch('/mypost', {
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('jwt'),
+      },
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+        setPics(result.mypost);
+      });
+  }, []);
   return (
     <div className='home-card'>
       <div
@@ -18,7 +33,7 @@ const Profile = () => {
           />
         </div>
         <div>
-          <h4>Dom Devis</h4>
+          <h4>{state ? state.name : 'Loading'}</h4>
           <div
             style={{
               display: 'flex',
@@ -33,14 +48,16 @@ const Profile = () => {
         </div>
       </div>
       <div className='gallary'>
-        <img
-          className='item'
-          src='https://images.unsplash.com/photo-1546458904-143d1674858d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
-        />
-        <img
-          className='item'
-          src='https://images.unsplash.com/photo-1546458904-143d1674858d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
-        />
+        {mypics.map((item) => {
+          return (
+            <img
+              className='item'
+              src={item.photo}
+              alt={item._id}
+              key={item._id}
+            />
+          );
+        })}
         <img
           className='item'
           src='https://images.unsplash.com/photo-1546458904-143d1674858d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
