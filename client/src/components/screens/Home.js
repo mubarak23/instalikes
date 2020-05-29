@@ -11,6 +11,7 @@ const Home = () => {
       .then((res) => res.json())
       .then((result) => {
         setData(result.posts);
+        console.log(result.posts);
       });
   }, []);
   return (
@@ -25,7 +26,7 @@ const Home = () => {
             <div className='card-content'>
               <i className='material-icons'>favorite</i>
               <h5>{item.title}</h5>
-              <p>This is the first InternLike Post</p>
+              <p>{item.body}</p>
               <input type='text' placeholder='Add a comment' />
             </div>
           </div>
