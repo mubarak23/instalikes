@@ -1,45 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Home = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    fetch('/allpost', {
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('jwt'),
+      },
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+        setData(result.posts);
+      });
+  });
   return (
     <div className='home'>
-      <div className='card  home-card'>
-        <h5>Latest Post</h5>
-        <div className='card-image'>
-          <img src='https://images.unsplash.com/photo-1558981285-6f0c94958bb6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60' />
-        </div>
-        <div className='card-content'>
-          <i className='material-icons'>favorite</i>
-          <h5>title</h5>
-          <p>This is the first InternLike Post</p>
-          <input type='text' placeholder='Add a comment' />
-        </div>
-      </div>
-      <div className='card  home-card'>
-        <h5>Latest Post</h5>
-        <div className='card-image'>
-          <img src='https://images.unsplash.com/photo-1558981285-6f0c94958bb6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60' />
-        </div>
-        <div className='card-content'>
-          <i className='material-icons'>favorite</i>
-          <h5>title</h5>
-          <p>This is the first InternLike Post</p>
-          <input type='text' placeholder='Add a comment' />
-        </div>
-      </div>
-      <div className='card  home-card'>
-        <h5>Latest Post</h5>
-        <i className='material-icons'>favorite</i>
-        <div className='card-image'>
-          <img src='https://images.unsplash.com/photo-1558981285-6f0c94958bb6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60' />
-        </div>
-        <div className='card-content'>
-          <i className='material-icons'>favorite</i>
-          <h5>title</h5>
-          <p>This is the first InternLike Post</p>
-          <input type='text' placeholder='Add a comment' />
-        </div>
-      </div>
+      {data.map((item) => {
+        return (
+          <div className='card  home-card' key={item.id}>
+            <h5>{item.postedBy.name}</h5>
+            <div className='card-image'>
+              <img src={item.photo} />
+            </div>
+            <div className='card-content'>
+              <i className='material-icons'>favorite</i>
+              <h5>{item.title}</h5>
+              <p>This is the first InternLike Post</p>
+              <input type='text' placeholder='Add a comment' />
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 };
