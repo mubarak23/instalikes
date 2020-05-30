@@ -25,7 +25,7 @@ const Home = () => {
         Authorization: 'Bearer ' + localStorage.getItem('jwt'),
       },
       body: JSON.stringify({
-        postid: id,
+        postId: id,
       }),
     })
       .then((res) => res.json())
@@ -52,7 +52,7 @@ const Home = () => {
         Authorization: 'Bearer ' + localStorage.getItem('jwt'),
       },
       body: JSON.stringify({
-        postid: id,
+        postId: id,
       }),
     })
       .then((res) => res.json())
