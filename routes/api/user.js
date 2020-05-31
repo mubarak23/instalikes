@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const { check, validationResult } = require('express-validator/check');
-const User = require('../../models/user');
+const mongoose = require('mongoose');
+const Post = mongoose.model('Post');
+const User = mongoose.model('User');
 //const auth = require('../../middleware/auth');
 const requireLogin = require('../../middleware/requirelogin');
 const config = require('config');
@@ -50,6 +52,7 @@ router.post(
 );
 
 router.get('/user/:id', requireLogin, (req, res) => {
+  console.log(req.params.id);
   User.findOne({ _id: req.params.id })
     .select('-password')
     .then((user) => {
