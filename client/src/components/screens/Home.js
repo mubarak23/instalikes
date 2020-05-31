@@ -118,6 +118,25 @@ const Home = () => {
       });
   };
 
+  const deletecomment = (postId, commentId) => {
+    console.log(postId);
+    console.log(commentId);
+    fetch(`/comments/${postId}/${commentId}`, {
+      method: 'delete',
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('jwt'),
+      },
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+        const newData = data.filter((item) => {
+          return item._id !== result._id;
+        });
+        setData(newData);
+      });
+  };
+
   return (
     <div className='home'>
       {data.map((item) => {
@@ -173,6 +192,17 @@ const Home = () => {
                       {record.postedBy.name}
                     </span>{' '}
                     {record.text}
+                    {record.postedBy._id == state._id && (
+                      <i
+                        className='material-icons'
+                        style={{
+                          float: 'right',
+                        }}
+                        onClick={() => deletecomment(record._id, item._id)}
+                      >
+                        delete
+                      </i>
+                    )}
                   </h6>
                 );
               })}

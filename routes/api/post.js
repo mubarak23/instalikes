@@ -126,6 +126,24 @@ router.put('/comment', requireLogin, (req, res) => {
     });
 });
 
+router.delete('/comments/:postId/:commentId', requireLogin, (req, res) => {
+  Post.findByIdAndUpdate(
+    req.params.postId,
+    {
+      $pull: { comments: req.params.commentId },
+    },
+    {
+      new: true,
+    }
+  ).exec((err, result) => {
+    if (err) {
+      return res.status(422).json({ error: err });
+    } else {
+      res.json(result);
+    }
+  });
+});
+
 router.delete('/deletepost/:postId', requireLogin, (req, res) => {
   Post.findOne({ _id: req.params.postId })
     .populate('postedBy', '_id')
