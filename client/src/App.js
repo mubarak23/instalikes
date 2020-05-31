@@ -5,6 +5,7 @@ import Profile from './components/screens/Profile';
 import Signin from './components/screens/Singin';
 import Singup from './components/screens/Signup';
 import CreatePost from './components/screens/CreatePost';
+import UserProfile from './components/screens/Userprofile';
 import { reducer, intialState } from './reducers/userReducer';
 import { BrowserRouter, Route, Switch, useHistory } from 'react-router-dom';
 import { json } from 'body-parser';
@@ -28,7 +29,7 @@ const Routing = () => {
       <Route exact path='/'>
         <Home />
       </Route>
-      <Route path='/profile'>
+      <Route exact path='/profile'>
         <Profile />
       </Route>
       <Route path='/signin'>
@@ -39,6 +40,9 @@ const Routing = () => {
       </Route>
       <Route path='/createpost'>
         <CreatePost />
+      </Route>
+      <Route path='/profile/:userid'>
+        <UserProfile />
       </Route>
     </Switch>
   );
