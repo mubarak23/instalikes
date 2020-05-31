@@ -130,7 +130,11 @@ router.delete('/comments/:postId/:commentId', requireLogin, (req, res) => {
   Post.findByIdAndUpdate(
     req.params.postId,
     {
-      $pull: { comments: req.params.commentId },
+      $pull: {
+        comments: {
+          postedBy: req.user_id,
+        },
+      },
     },
     {
       new: true,
