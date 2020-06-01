@@ -54,6 +54,40 @@ const Profile = () => {
       });
   };
 
+  const unfollowUser = () => {
+    fetch('/unfollow', {
+      method: 'put',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + localStorage.getItem('jwt'),
+      },
+      body: JSON.stringify({
+        unfollowId: userid,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch({
+          type: 'UPDATE',
+          payload: { following: data.following, followers: data.followers },
+        });
+        localStorage.setItem('user', JSON.stringify(data));
+        setProfile((prevState) => {
+          const newfollower = prevState.user.followers.filter(
+            (item) => item != data._id
+          );
+          return {
+            ...prevState,
+            user: {
+              ...prevState.user,
+              followers: newfollower,
+            },
+          };
+        });
+        setShowFollow(true);
+      });
+  };
+
   return (
     <>
       {userProfile ? (
