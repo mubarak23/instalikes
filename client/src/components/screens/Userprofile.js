@@ -122,8 +122,8 @@ const Profile = () => {
                 }}
               >
                 <h5>{userProfile.posts.length} Posts</h5>
-                <h5>40 Followers</h5>
-                <h5>40 Following</h5>
+                <h5>{userProfile.user.followers.length} Followers</h5>
+                <h5>{userProfile.user.following.length} Following</h5>
               </div>
               {showfollow ? (
                 <button
