@@ -40,9 +40,9 @@ const Profile = () => {
               width: '108%',
             }}
           >
-            <h5>40 Posts</h5>
-            <h5>40 Followers</h5>
-            <h5>40 Following</h5>
+            <h5>{mypics.length} Posts</h5>
+            <h5>{state ? state.followers.length : '0'} Followers</h5>
+            <h5>{state ? state.following.length : '0'} Following</h5>
           </div>
         </div>
       </div>
