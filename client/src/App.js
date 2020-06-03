@@ -5,6 +5,7 @@ import Profile from './components/screens/Profile';
 import Signin from './components/screens/Singin';
 import Singup from './components/screens/Signup';
 import CreatePost from './components/screens/CreatePost';
+import SubscribrUserPost from './components/screens/SubcribeUserPosts';
 import UserProfile from './components/screens/Userprofile';
 import { reducer, intialState } from './reducers/userReducer';
 import { BrowserRouter, Route, Switch, useHistory } from 'react-router-dom';
@@ -40,6 +41,9 @@ const Routing = () => {
       </Route>
       <Route path='/createpost'>
         <CreatePost />
+      </Route>
+      <Route path='/followingpost'>
+        <SubscribrUserPost />
       </Route>
       <Route path='/profile/:userid'>
         <UserProfile />

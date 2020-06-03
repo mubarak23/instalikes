@@ -13,6 +13,10 @@ const NavBar = () => {
         <li>
           <Link to='/createpost'>Create Post</Link>
         </li>,
+        <li>
+          <Link to='/followingpost'>Following Posts</Link>
+        </li>,
+
         <li
           onClick={() => {
             localStorage.clear();
