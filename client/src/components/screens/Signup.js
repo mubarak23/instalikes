@@ -9,7 +9,7 @@ const Signup = () => {
   const [password, SetPassword] = useState('');
   const [email, SetEmail] = useState('');
   const [image, setImage] = useState('');
-  const [url, setUrl] = useState('');
+  const [url, setUrl] = useState(undefined);
   useEffect(() => {
     if (url) {
       uploadField();
