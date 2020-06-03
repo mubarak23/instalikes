@@ -28,7 +28,11 @@ const Profile = () => {
         <div>
           <img
             style={{ width: '160px', height: '160px', borderRadius: '80px' }}
-            src='https://images.unsplash.com/photo-1546458904-143d1674858d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
+            src={
+              state
+                ? state.pic
+                : 'https://images.unsplash.com/photo-1546458904-143d1674858d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
+            }
           />
         </div>
         <div>
