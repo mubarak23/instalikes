@@ -1,12 +1,11 @@
 {
-  "name": "instalike",
+  "name": "server",
   "version": "1.0.0",
-  "description": "instalike app for professionals",
+  "description": "",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "heroko-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
-    "server": "nodemon server.js"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "mubarak aminu",
   "license": "ISC",
