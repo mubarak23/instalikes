@@ -156,4 +156,17 @@ router.post('/search-users', (req, res) => {
       console.log(err);
     });
 });
+
+router.delete('/delete_account', (req, res) => {
+  Post.deleteMany({ user: req.user.id }).exec((err, post) => {
+    User.findOneAndRemove({ _id: req.user.id })
+      .then((result) => {
+        console.log(result);
+        res.json({ result });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+});
 module.exports = router;
