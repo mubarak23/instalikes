@@ -68,7 +68,7 @@ const Profile = () => {
 
   const delete_account = () => {
     fetch('/delete_account', {
-      method: 'post',
+      method: 'delete',
       headers: {
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + localStorage.getItem('jwt'),
