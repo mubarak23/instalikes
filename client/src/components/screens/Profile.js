@@ -104,18 +104,22 @@ const Profile = () => {
           borderBottom: '1px solid grey',
         }}
       >
-        <div className='file-field input-field'>
-          <div className='btn #64b5f6 blue darken-1'>
-            <span>Update Profile</span>
-            <input
-              type='file'
-              onChange={(e) => Uploadphoto(e.target.files[0])}
-            />
+        {!state ? (
+          <div className='file-field input-field'>
+            <div className='btn #64b5f6 blue darken-1'>
+              <span>Update Profile</span>
+              <input
+                type='file'
+                onChange={(e) => Uploadphoto(e.target.files[0])}
+              />
+            </div>
+            <div className='file-path-wrapper'>
+              <input className='file-path validate' type='text' />
+            </div>
           </div>
-          <div className='file-path-wrapper'>
-            <input className='file-path validate' type='text' />
-          </div>
-        </div>
+        ) : (
+          'Delete Account'
+        )}
       </div>
       <div className='gallary'>
         {mypics.map((item) => {
