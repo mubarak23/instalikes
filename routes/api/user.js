@@ -157,8 +157,8 @@ router.post('/search-users', (req, res) => {
     });
 });
 
-router.delete('/delete_account', (req, res) => {
-  Post.deleteMany({ user: req.user.id }).exec((err, post) => {
+router.delete('/delete_account', requireLogin, (req, res) => {
+  Post.deleteMany({ user: req.user._id }).exec((err, post) => {
     User.findOneAndRemove({ _id: req.user.id })
       .then((result) => {
         console.log(result);

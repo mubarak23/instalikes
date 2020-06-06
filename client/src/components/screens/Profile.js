@@ -1,9 +1,11 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { userContext } from '../../App';
+import { useHistory } from 'react-router-dom';
 const Profile = () => {
   const [mypics, setPics] = useState([]);
   const { state, dispatch } = useContext(userContext);
   const [image, setImage] = useState('');
+  const history = useHistory();
   const [url, setUrl] = useState();
   useEffect(() => {
     fetch('/mypost', {
@@ -64,6 +66,26 @@ const Profile = () => {
     setImage(file);
   };
 
+  const delete_account = () => {
+    fetch('/delete_account', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + localStorage.getItem('jwt'),
+      },
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+        localStorage.clear();
+        dispatch({ type: 'CLEAR' });
+        history.push('/signin');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className='home-card'>
       <div
@@ -118,7 +140,12 @@ const Profile = () => {
             </div>
           </div>
         ) : (
-          'Delete Account'
+          <button
+            onClick={() => delete_account()}
+            className='btn waves-effect waves-light #64b5f6 blue darken-1'
+          >
+            Delete Account
+          </button>
         )}
       </div>
       <div className='gallary'>
