@@ -8,17 +8,18 @@ const NavBar = () => {
   const renderList = () => {
     if (state) {
       return [
-        <li>
+        <li key='1'>
           <Link to='/profile'>Profile</Link>
         </li>,
-        <li>
+        <li key='2'>
           <Link to='/createpost'>Create Post</Link>
         </li>,
-        <li>
+        <li key='3'>
           <Link to='/followingpost'>Following Posts</Link>
         </li>,
 
         <li
+          key='4'
           onClick={() => {
             localStorage.clear();
             dispatch({ type: 'CLEAR' });
@@ -30,10 +31,10 @@ const NavBar = () => {
       ];
     } else {
       return [
-        <li>
+        <li key='5'>
           <Link to='/signin'>Signin</Link>
         </li>,
-        <li>
+        <li key='6'>
           <Link to='/signup'>Signup</Link>
         </li>,
       ];
@@ -41,7 +42,7 @@ const NavBar = () => {
   };
   return (
     <nav>
-      <div class='nav-wrapper'>
+      <div className='nav-wrapper'>
         <Link to={state ? '/' : '/signin'} className='brand-logo left'>
           InternLike
         </Link>
