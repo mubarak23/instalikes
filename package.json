@@ -12,6 +12,7 @@
   "author": "mubarak aminu",
   "license": "ISC",
   "dependencies": {
+    "@sendgrid/mail": "^7.1.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "config": "^3.1.0",
@@ -21,6 +22,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.7",
     "nodemailer": "^6.4.6",
+    "nodemailer-sendgrid-transport": "^0.2.0",
     "react-router-dom": "^5.1.2",
     "sendgrid": "^5.2.3"
   },

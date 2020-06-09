@@ -1,4 +1,6 @@
 {
   "mongoURI": "mongodb://root:root123@ds219879.mlab.com:19879/instalike",
-  "jwtSecret": "mysecrettoken"
+  "jwtSecret": "mysecrettoken",
+  "SENDGRID_API": "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",
+  "Email": "mubarakaminu340@gmail.com"
 }
