@@ -5,6 +5,7 @@ import Profile from './components/screens/Profile';
 import Signin from './components/screens/Singin';
 import Singup from './components/screens/Signup';
 import CreatePost from './components/screens/CreatePost';
+import Reset from './components/screens/Reset';
 import SubscribrUserPost from './components/screens/SubcribeUserPosts';
 import UserProfile from './components/screens/Userprofile';
 import { reducer, intialState } from './reducers/userReducer';
@@ -21,7 +22,8 @@ const Routing = () => {
     if (user) {
       dispatch({ type: 'USER', payload: user });
     } else {
-      history.push('/signin');
+      if (!history.location.pathname.startsWith('/reset'))
+        history.push('/signin');
     }
   }, []);
 
@@ -47,6 +49,9 @@ const Routing = () => {
       </Route>
       <Route path='/profile/:userid'>
         <UserProfile />
+      </Route>
+      <Route path='/reset'>
+        <Reset />
       </Route>
     </Switch>
   );
