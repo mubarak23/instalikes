@@ -24,6 +24,7 @@ const SetNewPassword = () => {
       },
       body: JSON.stringify({
         email,
+        password,
       }),
     })
       .then((res) => res.json())
@@ -48,7 +49,7 @@ const SetNewPassword = () => {
         <input
           type='password'
           placeholder='Set New Pasword'
-          value={email}
+          value={password}
           onChange={(e) => SetPassword(e.target.value)}
         />
         <button

@@ -72,6 +72,9 @@ const Signin = () => {
         <h5>
           <Link to='/signup'>Don't Have An Account SignUp</Link>
         </h5>
+        <h5>
+          <Link to='/reset'>Forget Password</Link>
+        </h5>
       </div>
     </dvi>
   );
