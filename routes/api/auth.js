@@ -111,6 +111,33 @@ router.post('/check_account', (req, res) => {
   });
 });
 
+router.post('/set_newpassword', (req, res) => {
+  User.findOne({ email: req.body.email })
+    .then((user) => {
+      if (!user) {
+        return res
+          .status(422)
+          .json({ error: 'User with the email does not exist' });
+      }
+      bcrypt.hash(req.body.password, 12).then((hashedpassword) => {
+        user.password = hashedpassword;
+        user.resetToken = undefined;
+        user.expireToken = undefined;
+        user
+          .save()
+          .then((user) => {
+            return res.json({ message: 'New Password Save successfully' });
+          })
+          .catch((err) => {
+            return res.json({ err });
+          });
+      });
+    })
+    .catch((err) => {
+      return res.json({ err });
+    });
+});
+
 router.post('/reset-password', (req, res) => {
   crypto.randomBytes(32, (err, buffer) => {
     if (err) {
