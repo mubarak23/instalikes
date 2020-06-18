@@ -17,7 +17,7 @@ const SetNewPassword = () => {
       M.toast({ html: 'invalid email', classes: '#c62828 red darken-3' });
       return;
     }
-    fetch('/check_account', {
+    fetch('/set_newpassword', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',

@@ -37,7 +37,7 @@ const Reset = () => {
             html: data.message,
             classes: '#43a047 green darken-1',
           });
-          history.push('/setnewpassword/' + { email });
+          history.push('/setnewpassword/' + email);
         }
       });
   };
