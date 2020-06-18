@@ -4,10 +4,10 @@ import { userContext } from '../../App';
 import M from 'materialize-css';
 import '../../App.css';
 
-const Reset = () => {
+const SetNewPassword = () => {
   const history = useHistory();
   const [password, SetPassword] = useState('');
-  const [email, SetEmail] = useState('');
+  //const [email, SetEmail] = useState('');
 
   const PostData = () => {
     if (
@@ -37,7 +37,7 @@ const Reset = () => {
             html: data.message,
             classes: '#43a047 green darken-1',
           });
-          history.push(`/setnewpassword/${email}`);
+          history.push('/signin');
         }
       });
   };
@@ -45,23 +45,23 @@ const Reset = () => {
   return (
     <dvi className='mycard'>
       <div className='card auth-card'>
-        <h3>InterLike</h3>
+        <h3>InterLike -- New Password</h3>
         <input
-          type='text'
-          placeholder='Eamil'
+          type='password'
+          placeholder='Set New Pasword'
           value={email}
-          onChange={(e) => SetEmail(e.target.value)}
+          onChange={(e) => SetPassword(e.target.value)}
         />
 
         <button
           onClick={() => PostData()}
           className='btn waves-effect waves-light #64b5f6 blue darken-1'
         >
-          Reset Password
+          New Password
         </button>
       </div>
     </dvi>
   );
 };
 
-export default Reset;
+export default SetNewPassword;

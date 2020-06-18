@@ -6,6 +6,7 @@ import Signin from './components/screens/Singin';
 import Singup from './components/screens/Signup';
 import CreatePost from './components/screens/CreatePost';
 import Reset from './components/screens/Reset';
+import SetNewPassword from './components/screens/SetNewPassword';
 import SubscribrUserPost from './components/screens/SubcribeUserPosts';
 import UserProfile from './components/screens/Userprofile';
 import { reducer, intialState } from './reducers/userReducer';
@@ -52,6 +53,9 @@ const Routing = () => {
       </Route>
       <Route path='/reset'>
         <Reset />
+      </Route>
+      <Route path='/setnewpassword/:email'>
+        <SetNewPassword />
       </Route>
     </Switch>
   );

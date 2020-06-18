@@ -10,6 +10,7 @@ const { JWT_SECRET } = require('../../config/keys');
 const nodemailer = require('nodemailer');
 const sendgridTransport = require('sendgrid');
 const { SENDGRID_API, EMAIL } = require('../../config/keys');
+const { realpathSync } = require('fs');
 //
 
 const transporter = nodemailer.createTransport(
@@ -93,6 +94,20 @@ router.post('/signin', (req, res) => {
       .catch((err) => {
         console.log(err);
       });
+  });
+});
+
+router.post('/check_account', (req, res) => {
+  User.findOne({ email: req.body.email }).then((user) => {
+    if (!user) {
+      return res
+        .status(422)
+        .json({ error: 'User with the email does not exist' });
+    }
+    return res.json({
+      user,
+      message: 'User exist with the email',
+    });
   });
 });
 
